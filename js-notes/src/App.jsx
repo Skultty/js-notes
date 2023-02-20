@@ -1,19 +1,12 @@
 import { useState } from "react";
-import AddNoteModal from "./components/addNoteModal";
-import "./components/addNoteModal.jsx";
+import Project from "./components/Project.jsx";
 
 function App() {
-  const [notes, setNotes] = useState([]);
-
-  function createNote(title, description, dueDate, priority) {
-    const newNote = { title, description, dueDate, priority };
-    setNotes([...notes, newNote]);
-  }
-
+  const [projects, setProjects] = useState([]);
   return (
     <div className="App">
       <h1>JS Notes</h1>
-      <AddNoteModal createNote={createNote} />
+      <Project title="Project 1" />
     </div>
   );
 }
