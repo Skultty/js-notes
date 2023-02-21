@@ -10,6 +10,7 @@ function Project({ title }) {
     if (notes.some((note) => note.title === title)) {
       return;
     }
+    priority = priority ? priority : "low";
     const newNote = { title, description, dueDate, priority };
     setNotes([...notes, newNote]);
   }
@@ -21,7 +22,7 @@ function Project({ title }) {
         <Note
           key={note.title}
           title={note.title}
-          content={note.description}
+          description={note.description}
           dueDate={note.dueDate}
           priority={note.priority}
         />
