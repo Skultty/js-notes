@@ -11,7 +11,11 @@ function App() {
     if (projects.some((project) => project.title === newProjectName)) {
       return;
     }
-    const newProject = { title: newProjectName };
+    const newProjectComponent = <Project title={newProjectName} />;
+    const newProject = {
+      title: newProjectName,
+      component: newProjectComponent,
+    };
     setProjects([...projects, newProject]);
   };
 
@@ -22,7 +26,7 @@ function App() {
           <h1 className="text-2xl font-bold">Projects</h1>
           <button
             className="bg-blue-200 text-black active:bg-blue-500 
-      font-bold px-6 py-3 mt-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+      font-bold px-6 py-3 w-3/4 mt-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
             type="button"
             onClick={() => setShowModal(true)}
           >
@@ -63,14 +67,28 @@ function App() {
             </>
           ) : null}
         </div>
+        <div className="border-2 w-full border-slate-900 mt-2" />
+        <div className="flex flex-col items-center">
+          {projects.map((project) => {
+            return (
+              <button
+                className="bg-blue-200 text-black active:bg-blue-500 
+              font-bold px-6 w-3/4 py-3 mt-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                type="button"
+                onClick={() => setCurrentProject(project.component)}
+                key={project.title}
+              >
+                {project.title}
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="col-span-5 bg-gray-100">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold">Notes</h1>
         </div>
-        {projects.map((project) => (
-          <Project key={project.name} title={project.name} />
-        ))}
+        <div className="flex flex-col items-center">{currentProject}</div>
       </div>
     </div>
   );
