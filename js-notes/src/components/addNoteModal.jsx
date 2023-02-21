@@ -29,40 +29,57 @@ function AddNoteModal(createNote) {
         Add new task
       </button>
       {showModal ? (
-        <div className="modal">
-          <form>
-            <label>Title</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <label>Description</label>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <label>Due Date</label>
-            <input
-              type="text"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
-            />
-            <label>Priority</label>
-            <select
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
-            >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-            <button type="submit" onClick={handleSubmit}>
-              Add Note
-            </button>
-          </form>
-        </div>
+        <>
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <form className="grid grid-cols-3 grid-rows-4 p-2 items-center justify-items-center bg-white rounded-xl">
+              <div className="flex flex-col items-center">
+                <label>Title</label>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="border-2 border-gray-300 p-2 rounded-md"
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <label>Due Date</label>
+                <input
+                  type="text"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                  className="border-2 border-gray-300 p-2 rounded-md"
+                />
+              </div>
+              <div className="flex flex-col items-center w-full">
+                <label>Priority</label>
+                <select
+                  value={priority}
+                  onChange={(e) => setPriority(e.target.value)}
+                  className="border-2 border-gray-300 p-2 rounded-md w-full"
+                >
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div className="h-full w-full col-span-3 row-span-2 flex flex-col items-center justify-center">
+                <label>Description</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="border-2 border-gray-300 rounded-md resize-none w-full h-full"
+                />
+              </div>
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="border-2 p-2 rounded-md col-span-3 bg-blue-200 text-black active:bg-blue-500 hover:bg-blue-500 transition-colors"
+              >
+                Add Note
+              </button>
+            </form>
+          </div>
+        </>
       ) : null}
     </>
   );
