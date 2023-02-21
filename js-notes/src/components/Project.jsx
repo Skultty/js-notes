@@ -7,6 +7,9 @@ function Project({ title }) {
   const [notes, setNotes] = useState([]);
 
   function createNote(title, description, dueDate, priority) {
+    if (notes.some((note) => note.title === title)) {
+      return;
+    }
     const newNote = { title, description, dueDate, priority };
     setNotes([...notes, newNote]);
   }
