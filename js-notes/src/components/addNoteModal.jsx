@@ -30,24 +30,24 @@ function AddNoteModal(createNote) {
       </button>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <form className="grid grid-cols-3 grid-rows-4 p-2 items-center justify-items-center bg-white rounded-xl">
-              <div className="flex flex-col items-center">
+          <div className="w-full h-full justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <form className="grid grid-cols-3 grid-rows-4 w-1/2 h-1/2 p-4 items-center justify-items-center bg-white rounded-xl">
+              <div className="flex flex-col items-center w-full">
                 <label>Title</label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="border-2 border-gray-300 p-2 rounded-md"
+                  className="border-2 border-gray-300 p-2 rounded-md w-full h-full"
                 />
               </div>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col w-full items-center">
                 <label>Due Date</label>
                 <input
                   type="text"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
-                  className="border-2 border-gray-300 p-2 rounded-md"
+                  className="border-2 border-gray-300 p-2 rounded-md w-full h-full"
                 />
               </div>
               <div className="flex flex-col items-center w-full">
@@ -55,7 +55,7 @@ function AddNoteModal(createNote) {
                 <select
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
-                  className="border-2 border-gray-300 p-2 rounded-md w-full"
+                  className="border-2 border-gray-300 p-2 rounded-md w-full h-full text-center"
                 >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
