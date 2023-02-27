@@ -12,7 +12,9 @@ function App() {
     if (projects.some((project) => project.title === newProjectName)) {
       return;
     }
-    const newProjectComponent = <Project title={newProjectName} />;
+    const newProjectComponent = (
+      <Project key={newProjectName} title={newProjectName} />
+    );
     const newProject = {
       title: newProjectName,
       component: newProjectComponent,
@@ -29,7 +31,9 @@ function App() {
     const projectsStr = JSON.parse(localStorage.getItem("projects"));
     if (projectsStr) {
       const projectsArr = projectsStr.map((project) => {
-        const projectComponent = <Project title={project.title} />;
+        const projectComponent = (
+          <Project key={project.title} title={project.title} />
+        );
         return { title: project.title, component: projectComponent };
       });
       setProjects(projectsArr);
@@ -93,7 +97,7 @@ function App() {
                 className="bg-blue-200 text-black active:bg-blue-500 
               font-bold px-6 w-3/4 py-3 mt-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                 type="button"
-                onClick={() => setCurrentProject(project.component)}
+                onClick={() => setCurrentProject(project)}
                 key={project.title}
               >
                 {project.title}
@@ -106,7 +110,9 @@ function App() {
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold">Notes</h1>
         </div>
-        <div className="flex flex-col items-center">{currentProject}</div>
+        <div className="flex flex-col items-center">
+          {currentProject.component}
+        </div>
       </div>
     </div>
   );
