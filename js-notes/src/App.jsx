@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import Project from "./components/Project.jsx";
 
@@ -17,7 +18,24 @@ function App() {
       component: newProjectComponent,
     };
     setProjects([...projects, newProject]);
+    addToLocalStorage(newProject);
   };
+
+  function addToLocalStorage(newProject) {
+    localStorage.setItem("projects", JSON.stringify([...projects, newProject]));
+  }
+
+  useEffect(() => {
+    const projectsStr = JSON.parse(localStorage.getItem("projects"));
+    if (projectsStr) {
+      const projectsArr = projectsStr.map((project) => {
+        const projectComponent = <Project title={project.title} />;
+        return { title: project.title, component: projectComponent };
+      });
+      setProjects(projectsArr);
+    }
+    console.log(projectsStr);
+  }, []);
 
   return (
     <div className="App h-screen w-screen bg-gray-300 grid grid-cols-6 grid-rows-1">

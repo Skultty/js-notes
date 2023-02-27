@@ -1,6 +1,6 @@
 import React from "react";
 import Note from "./Note";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddNoteModal from "./addNoteModal";
 
 function Project({ title }) {
@@ -12,7 +12,29 @@ function Project({ title }) {
     priority = priority ? priority : "low";
     const newNote = { title, description, dueDate, priority };
     setNotes([...notes, newNote]);
+    addToLocalStorage(newNote);
   }
+
+  function addToLocalStorage(newNote) {
+    localStorage.setItem(title + " Notes", JSON.stringify([...notes, newNote]));
+  }
+
+  useEffect(() => {
+    const notesStr = JSON.parse(localStorage.getItem(title + " Notes"));
+    if (notesStr) {
+      const notesArr = notesStr.map((note) => {
+        return {
+          title: note.title,
+          description: note.description,
+          dueDate: note.dueDate,
+          priority: note.priority,
+        };
+      });
+      setNotes(notesArr);
+    }
+    console.log(notesStr);
+  }, []);
+
   return (
     <div className="project">
       <h1>{title}</h1>
