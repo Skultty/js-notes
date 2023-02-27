@@ -43,8 +43,8 @@ function App() {
 
   return (
     <div className="App h-screen w-screen bg-gray-300 grid grid-cols-6 grid-rows-1">
-      <div className="col-span-1 bg-gray-200">
-        <div className="flex flex-col items-center">
+      <div className="col-span-1 h-screen bg-gray-200">
+        <div className="flex flex-col items-center h-1/5">
           <h1 className="text-2xl font-bold">Projects</h1>
           <button
             className="bg-blue-200 text-black active:bg-blue-500 
@@ -89,8 +89,10 @@ function App() {
             </>
           ) : null}
         </div>
-        <div className="border-2 w-full border-slate-900 mt-2" />
-        <div className="flex flex-col items-center">
+        <div
+          className="flex flex-col items-center overflow-y-auto h-4/5
+        "
+        >
           {projects.map((project) => {
             return (
               <button
@@ -106,13 +108,8 @@ function App() {
           })}
         </div>
       </div>
-      <div className="col-span-5 bg-gray-100">
-        <div className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold">Notes</h1>
-        </div>
-        <div className="flex flex-col items-center">
-          {currentProject.component}
-        </div>
+      <div className="col-span-5 bg-gray-100 flex flex-col items-center">
+        {currentProject.component}
       </div>
     </div>
   );

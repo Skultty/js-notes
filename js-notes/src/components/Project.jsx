@@ -36,18 +36,22 @@ function Project({ title }) {
   }, []);
 
   return (
-    <div className="project">
-      <h1>{title}</h1>
-      <AddNoteModal createNote={createNote} />
-      {notes.map((note) => (
-        <Note
-          key={note.title}
-          title={note.title}
-          description={note.description}
-          dueDate={note.dueDate}
-          priority={note.priority}
-        />
-      ))}
+    <div>
+      <div className="flex flex-col items-center">
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <AddNoteModal createNote={createNote} />
+      </div>
+      <div className="flex w-full">
+        {notes.map((note) => (
+          <Note
+            key={note.title}
+            title={note.title}
+            description={note.description}
+            dueDate={note.dueDate}
+            priority={note.priority}
+          />
+        ))}
+      </div>
     </div>
   );
 }
