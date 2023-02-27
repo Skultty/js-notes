@@ -44,7 +44,7 @@ function AddNoteModal(createNote) {
               <div className="flex flex-col w-full items-center">
                 <label>Due Date</label>
                 <input
-                  type="text"
+                  type="date"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
                   className="border-2 border-gray-300 p-2 rounded-md w-full h-full"
